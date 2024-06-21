@@ -1,0 +1,24 @@
+{
+    "Project": {
+        "Name": "s3tarecsdemo",
+        "Account": "XXXXXXXXXXXX",
+        "Region": "us-east-1",
+        "Profile": "default"
+    },
+
+    "Stack": {
+        "ECRInfra": {
+            "Name": "ecrstack",
+            "RepoName": "s3tarrepo",
+            "ImageTag": "v1"
+        },
+        "S3TarECSStack":{
+            "Name": "S3TarECSStack",
+            "SourceBucketName": "s3tarsourcebucket",
+            "DestBucketName": "s3tardestinationbucket",
+            "DestBucketInventoryPrefix": "s3tardestinationbucket/s3tarsourcebucket/s3tarinventory/",
+            "DestBucketRegion": "us-east-1",
+            "DestBucketS3TarPrefix": "s3tardestinationbucket/s3tar"
+        }
+    }
+}
