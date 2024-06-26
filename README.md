@@ -115,9 +115,9 @@ pip install -r requirements.txt
 2. The max retry count is defaulted to 3 times which can be adjusted based on requirement in s3_object_aggregation_using_s3tar/s3_object_aggregation_using_s3tar_stack.py
 
 ## Test Data Generation
-The test utility program can be used to generate random log data and seed it across date partitions in a source S3 bucket for a given number of days from current day per the argument configuration:
+The test utility program can be used to generate random log data and seed it across date partitions in a source S3 bucket for a given number of days from current day per the argument configuration. Note: Make sure to replace the bucket name with actual source bucket name where you are trying to load the test data.
    ```
-   ./tests/generate_test_data_in_S3.py -n 10 -f -b source-bucket-name
+   ./tests/generate_test_data_in_S3.py -n 10 -b source-bucket-name
    ```
 ## Testing
 1. As the state machine has the default schedule set to run at midnight UTC everyday, adjust the EventBridge schedule for a one-time test or rate based for executing the workflow. 
