@@ -61,7 +61,7 @@ pip install -r requirements.txt
 
 **Solution Deployment Steps**
 
-1. Update config/s3tar-app-config.json file for AWS Account, profile information and other stack configurations 
+1. Update config/s3tar-app-config.json file for AWS Account, profile information and other stack configurations. 
 2. After installing dependencies, bootstrap CDK by executing the scripts/setup_initial.sh
     ```bash
       sh scripts/setup_initial.sh config/s3tar-app-config.json
@@ -75,7 +75,7 @@ pip install -r requirements.txt
       cd s3tar_docker
       sh create_s3tar_image_in_ecr.sh ../config/s3tar-app-config.json
     ```
-   **NOTE:** Since x86_64 architecture is chosen for s3tar release, make sure to build the docker image from a x86_64 supported machine to avoid compatibility issues. Using an AWS Cloud9 temporary dev environment can ease this step.
+   **NOTE:** Since x86_64 architecture is chosen for s3tar release, make sure to build the docker image from a docker runtime inside x86_64 supported machine to avoid compatibility issues. Using an AWS Cloud9 temporary dev environment with platform chosen as Amazon Linux 2023 can ease this step as the docker runtime and other required libraries are pre-installed.
 
 5. After successfully creating the private ECR repo and pushing the s3tar docker image, deploy the CDK solution stack from project root folder by executing scripts/deploy_stacks.sh file.  
     ```bash
@@ -126,6 +126,7 @@ The test utility program can be used to generate random log data and seed it acr
    ![s3tar-Destination-S3-FinalTar](architecture/destination_s3_final_tar.png)
 3. A failed execution shows the workflow states as shown below. ErrorHandler lambda evaluates if failure codes from ECS task is retryable. If yes, it retries for maximum 3 times per stack configuration with a configured wait seconds before ending the workflow after SNS error notification.
    ![s3tar-Failure_Execution-StepFunction_States](architecture/stepfunctions_failure.png)
+
 # Clean Up
 1. CDK Stack resources can be deleted by executing scripts/destroy_stacks.sh from project root
    ```bash
